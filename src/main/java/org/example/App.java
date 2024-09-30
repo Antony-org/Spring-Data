@@ -34,7 +34,15 @@ public class App
 
         List<User> users = userDao.getUserGreaterThanAge(25);
 
+        System.out.println(userDao.getUserById(2));
+
         // Using a stream to process the list
         users.stream().forEach(user -> System.out.println("User greater than 25: " + user));
+
+        List<User> users2 = userDao.getAllUsers();
+
+
+        // Using a stream to process the list
+        users2.stream().forEach(user -> System.out.println(user));
     }
 }
