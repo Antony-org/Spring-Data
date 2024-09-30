@@ -2,9 +2,7 @@ package org.example.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class User {
-
     private int id;
     private String name;
     private String email;
