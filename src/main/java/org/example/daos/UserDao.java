@@ -3,11 +3,8 @@ package org.example.daos;
 import org.example.mappers.UserResultSetExtractor;
 import org.example.mappers.UserRowMapper;
 import org.example.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -25,16 +22,12 @@ public class UserDao extends JdbcDaoSupport {
 //    private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert simpleJdbcInsert;
 
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public UserDao(DataSource dataSource, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public UserDao(DataSource dataSource, NamedParameterJdbcTemplate namedParameterJdbcTemplate, SimpleJdbcInsert simpleJdbcInsert) {
         setDataSource(dataSource);
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-        this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
-                .withTableName("users")
-                .usingColumns("name", "email", "age")
-                .usingGeneratedKeyColumns("id");
-
+        this.simpleJdbcInsert = simpleJdbcInsert;
     }
 
     public void createUserTable() {

@@ -7,10 +7,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.util.List;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
@@ -40,7 +36,6 @@ public class App
         users.stream().forEach(user -> System.out.println("User greater than 25: " + user));
 
         List<User> users2 = userDao.getAllUsers();
-
 
         // Using a stream to process the list
         users2.stream().forEach(user -> System.out.println(user));

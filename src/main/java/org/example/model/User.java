@@ -1,7 +1,5 @@
 package org.example.model;
 
-import org.springframework.stereotype.Component;
-
 public class User {
     private int id;
     private String name;
