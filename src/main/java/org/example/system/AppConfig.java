@@ -15,7 +15,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@EnableTransactionManagement // Make sure to enable transaction management
+@EnableTransactionManagement
 @Configuration
 @ComponentScan(basePackages = "org.example")
 public class AppConfig {

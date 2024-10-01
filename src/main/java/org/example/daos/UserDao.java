@@ -16,19 +16,22 @@ public class UserDao {
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void saveUser(User user) {
         hibernateTemplate.save(user);
         System.out.println("User saved successfully with id: " + user.getId());
     }
 
-    public User getUserById(int id) {
-        return hibernateTemplate.get(User.class, id);
-    }
-
-    @Transactional
+    //@Transactional(propagation = Propagation.MANDATORY)
+    //Never returns an error
     public void updateUser(User user) {
         hibernateTemplate.update(user);
+        System.out.println("User updated successfully with id: " + user.getId());
+    }
+
+    @Transactional(propagation = Propagation.NESTED)
+    public User getUserById(int id) {
+        return hibernateTemplate.get(User.class, 100);
     }
 
     public List<User> getAllUsers() {

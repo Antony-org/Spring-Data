@@ -3,6 +3,7 @@ package org.example;
 import org.example.daos.UserDAOImp;
 import org.example.daos.UserDao;
 import org.example.model.User;
+import org.example.service.UserService;
 import org.example.system.AppConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -18,13 +19,20 @@ public class App
         UserDao userDao = context.getBean(UserDao.class);
         UserDAOImp userDAOImp = context.getBean(UserDAOImp.class);
 
-        User User = new User();
-        User.setName("John Doe");
-        User.setEmail("john@example.com");
-        User.setAge(30);
+        User user = new User();
+        user.setName("John Doe");
+        user.setEmail("john@example.com");
+        user.setAge(30);
 
-        userDao.saveUser(User);
+        UserService userService = context.getBean(UserService.class);
+        userService.testTransaction();
 
-        userDAOImp.save(User);
+
+//        List<User> users = userDao.getAllUsers();
+//        for (User user : users) {
+//            System.out.println(user);
+//        }
+
+        //userDAOImp.save(User);
     }
 }
