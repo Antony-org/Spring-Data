@@ -53,6 +53,7 @@ public class AppConfig {
     @Bean
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager txManager = new HibernateTransactionManager();
+        txManager.setNestedTransactionAllowed(true); // Enable nested transactions
         txManager.setSessionFactory(sessionFactory);
         return txManager;
     }

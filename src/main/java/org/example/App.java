@@ -2,9 +2,12 @@ package org.example;
 
 import org.example.daos.UserDAOImp;
 import org.example.daos.UserDao;
+import org.example.daos.UserDaoTask1;
+import org.example.daos.UserDaoTask2;
 import org.example.model.User;
 import org.example.service.UserService;
 import org.example.system.AppConfig;
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.List;
@@ -26,6 +29,16 @@ public class App
 
         UserService userService = context.getBean(UserService.class);
         userService.testTransaction();
+
+//        UserDaoTask1 userDaoTask1 = context.getBean(UserDaoTask1.class);
+//
+//        userDaoTask1.setSessionFactory(context.getBean(SessionFactory.class));
+//        userDaoTask1.saveUser(user);
+//
+//        UserDaoTask2 userDaoTask2 = context.getBean(UserDaoTask2.class);
+//        user.setName("hello task 2");
+//        userDaoTask2.updateUser(user);
+
 
 
 //        List<User> users = userDao.getAllUsers();
