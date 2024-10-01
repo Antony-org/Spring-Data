@@ -24,14 +24,18 @@ public class UserDao {
 
     //@Transactional(propagation = Propagation.MANDATORY)
     //Never returns an error
+    @Transactional(propagation = Propagation.NESTED)
     public void updateUser(User user) {
+        if (user.getId() == 51) {
+            throw new RuntimeException("Simulating error in nested transaction");
+        }
         hibernateTemplate.update(user);
         System.out.println("User updated successfully with id: " + user.getId());
     }
 
-    @Transactional(propagation = Propagation.NESTED)
+    //@Transactional
     public User getUserById(int id) {
-        return hibernateTemplate.get(User.class, 100);
+        return hibernateTemplate.get(User.class, id);
     }
 
     public List<User> getAllUsers() {

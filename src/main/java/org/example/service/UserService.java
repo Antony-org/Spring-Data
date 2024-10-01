@@ -39,12 +39,22 @@ public class UserService {
         user.setEmail("john@example.com");
         user.setAge(30);
 
+
+        User foundUser = userDao.getUserById(51);
+
+        userDao.saveUser(user);
+
+        foundUser.setName("nested transaction user");
+        try {
+            userDao.updateUser(foundUser);
+        } catch (Exception e) {
+            System.out.println("Exception in nested transaction: " + e.getMessage());
+        }
         userDao.saveUser(user);
 
         userDao.getUserById(user.getId());
 
-        user.setName("updated tony");
-        userDao.updateUser(user);
+
 
         System.out.println("test transaction end");
     }

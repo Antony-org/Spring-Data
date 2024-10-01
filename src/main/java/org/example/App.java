@@ -25,7 +25,7 @@ public class App
         User user = new User();
         user.setName("John Doe");
         user.setEmail("john@example.com");
-        user.setAge(30);
+        user.setAge(51);
 
         UserService userService = context.getBean(UserService.class);
         userService.testTransaction();
