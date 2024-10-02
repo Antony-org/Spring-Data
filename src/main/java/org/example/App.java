@@ -22,8 +22,8 @@ public class App
         user.setAge(51);
 
 
-        userDao.saveUser(user);
-
+        UserService userService = context.getBean(UserService.class);
+        userService.test(user);
 
 
 

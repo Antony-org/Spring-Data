@@ -11,21 +11,35 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 @Repository
 public class UserDao {
 
-    @PersistenceContext
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
 
     @Transactional
     public void saveUser(User user) {
+        System.out.println("EntityManager in Transaction: 1 " + entityManager);
+        System.out.println("Actual EntityManager in Transaction 1: " + entityManager.getDelegate());
+
         entityManager.persist(user);
         System.out.println(entityManager.isOpen());
 
         System.out.println("User saved successfully with id: " + user.getId());
+    }
+
+    @Transactional
+    public void updateUser(User user) {
+        user.setName("Updated Name");
+        System.out.println("EntityManager in Transaction 2: " + entityManager);
+        System.out.println("Actual EntityManager in Transaction 2: " + entityManager.getDelegate());
+
+        entityManager.merge(user);
+        System.out.println("User updated successfully with id: " + user.getId());
     }
 
     //@Transactional(propagation = Propagation.MANDATORY)
