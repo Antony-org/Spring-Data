@@ -16,7 +16,7 @@ public class UserDao {
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveUser(User user) {
         hibernateTemplate.save(user);
         System.out.println("User saved successfully with id: " + user.getId());
@@ -26,9 +26,10 @@ public class UserDao {
     //Never returns an error
     @Transactional(propagation = Propagation.NESTED)
     public void updateUser(User user) {
-        if (user.getId() == 51) {
-            throw new RuntimeException("Simulating error in nested transaction");
-        }
+        user.setName("Nested Transaction User");
+//        if (user.getId() == 51) {
+//            throw new RuntimeException("Simulating error in nested transaction");
+//        }
         hibernateTemplate.update(user);
         System.out.println("User updated successfully with id: " + user.getId());
     }
