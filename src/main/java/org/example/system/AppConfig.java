@@ -39,14 +39,14 @@ public class AppConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource);
-        em.setPackagesToScan("org.example");
+        LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+        emf.setDataSource(dataSource);
+        emf.setPackagesToScan("org.example");
 
-        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        em.setJpaProperties(jpaProperties());
+        emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        emf.setJpaProperties(jpaProperties());
 
-        return em;
+        return emf;
     }
 
     @Bean
