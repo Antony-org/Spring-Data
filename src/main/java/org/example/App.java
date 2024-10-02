@@ -7,7 +7,7 @@ import org.example.system.AppConfig;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
