@@ -30,14 +30,14 @@ public class App
         UserService userService = context.getBean(UserService.class);
         userService.testTransaction();
 
-        UserDaoTask1 userDaoTask1 = context.getBean(UserDaoTask1.class);
-
-        userDaoTask1.setSessionFactory(context.getBean(SessionFactory.class));
-        userDaoTask1.saveUser(user);
-
-        UserDaoTask2 userDaoTask2 = context.getBean(UserDaoTask2.class);
-        user.setName("hello task 2");
-        userDaoTask2.updateUser(user);
+//        UserDaoTask1 userDaoTask1 = context.getBean(UserDaoTask1.class);
+//
+//        userDaoTask1.setSessionFactory(context.getBean(SessionFactory.class));
+//        userDaoTask1.saveUser(user);
+//
+//        UserDaoTask2 userDaoTask2 = context.getBean(UserDaoTask2.class);
+//        user.setName("hello task 2");
+//        userDaoTask2.updateUser(user);
 
 
 

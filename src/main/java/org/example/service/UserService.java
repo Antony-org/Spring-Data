@@ -5,9 +5,11 @@ import org.example.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 @Service
 public class UserService {
+    String currentTransactionName = TransactionSynchronizationManager.getCurrentTransactionName();
 
     private final UserDao userDao;
 
@@ -15,24 +17,10 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public void saveUser(User user) {
-        userDao.saveUser(user);
-        System.out.println("User saved successfully with id: " + user.getId());
-    }
-
-    public User getUserById(int id) {
-        userDao.getUserById(id);
-        return new User(id, "John", "johndoe", 25);
-    }
-
-    public void updateUser(User user) {
-        userDao.updateUser(user);
-        System.out.println("User updated successfully with id: " + user.getId());
-    }
-
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void testTransaction() {
         System.out.println("test transaction");
+        System.out.println("Transaction name: " + TransactionSynchronizationManager.getCurrentTransactionName());
 
         User user = new User();
         user.setName("tested user");
@@ -53,8 +41,6 @@ public class UserService {
         userDao.saveUser(user);
 
         userDao.getUserById(user.getId());
-
-
 
         System.out.println("test transaction end");
     }
